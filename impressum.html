@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Impressum – Barbara Themel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Tenor+Sans&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --cream: #f5f0e8;
+      --warm-brown: #5c4a35;
+      --dark-brown: #2e1f0f;
+      --accent: #b07d50;
+      --line: #c8b89a;
+    }
+
+    body {
+      background-color: var(--cream);
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--dark-brown);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .corner-tl,
+    .corner-tr,
+    .corner-bl,
+    .corner-br {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      border-color: var(--line);
+      border-style: solid;
+      border-width: 0;
+      opacity: 0.6;
+      animation: fadeIn 1.5s ease both;
+    }
+    .corner-tl { top: 32px; left: 32px; border-top-width: 1px; border-left-width: 1px; }
+    .corner-tr { top: 32px; right: 32px; border-top-width: 1px; border-right-width: 1px; }
+    .corner-bl { bottom: 32px; left: 32px; border-bottom-width: 1px; border-left-width: 1px; }
+    .corner-br { bottom: 32px; right: 32px; border-bottom-width: 1px; border-right-width: 1px; }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 72px 100px;
+      max-width: 620px;
+      width: 100%;
+      animation: fadeUp 1s ease both;
+    }
+
+    .top-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 36px;
+      animation: fadeUp 1s ease 0.15s both;
+    }
+
+    .line-short {
+      width: 60px;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .diamond {
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      transform: rotate(45deg);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 8.5px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--line);
+      text-decoration: none;
+      margin-bottom: 36px;
+      transition: color 0.3s;
+      animation: fadeUp 1s ease 0.1s both;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; font-size: 12px; }
+
+    .page-label {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      animation: fadeUp 1s ease 0.2s both;
+    }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(36px, 6vw, 56px);
+      color: var(--dark-brown);
+      margin-bottom: 40px;
+      line-height: 1.1;
+      animation: fadeUp 1s ease 0.28s both;
+    }
+
+    .page-title em {
+      font-style: italic;
+      color: var(--warm-brown);
+    }
+
+    /* Imprint content */
+    .imprint-block {
+      text-align: left;
+      animation: fadeUp 1s ease 0.38s both;
+    }
+
+    .imprint-row {
+      display: flex;
+      flex-direction: column;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(200, 184, 154, 0.35);
+    }
+
+    .imprint-row:first-child {
+      border-top: 1px solid rgba(200, 184, 154, 0.35);
+    }
+
+    .imprint-key {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 8px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--warm-brown);
+      margin-bottom: 5px;
+    }
+
+    .imprint-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 17px;
+      color: var(--dark-brown);
+      line-height: 1.5;
+    }
+
+    .imprint-val a {
+      color: var(--dark-brown);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .imprint-val a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.4s ease;
+    }
+
+    .imprint-val a:hover { color: var(--accent); }
+    .imprint-val a:hover::after { width: 100%; }
+
+    .bottom-ornament {
+      margin-top: 48px;
+      animation: fadeUp 1s ease 0.5s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 0.6; }
+    }
+
+    @media (max-width: 600px) {
+      .card { padding: 60px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="corner-tl"></div>
+  <div class="corner-tr"></div>
+  <div class="corner-bl"></div>
+  <div class="corner-br"></div>
+
+  <main class="card">
+
+    <div class="top-ornament">
+      <div class="line-short"></div>
+      <div class="diamond"></div>
+      <div class="line-short"></div>
+    </div>
+
+    <a class="back-link" href="index.html">Zurück</a>
+
+    <h1 class="page-title">Im<em>pressum</em></h1>
+
+    <div class="imprint-block">
+
+      <div class="imprint-row">
+        <span class="imprint-key">Unternehmen</span>
+        <span class="imprint-val">Feichter EDV Org. HandelsgmbH</span>
+      </div>
+
+      <div class="imprint-row">
+        <span class="imprint-key">Adresse</span>
+        <span class="imprint-val">Winkelbreiten 37/1, 1130 Wien, Österreich</span>
+      </div>
+
+      <div class="imprint-row">
+        <span class="imprint-key">Website</span>
+        <span class="imprint-val"><a href="https://www.feo.at" target="_blank">www.feo.at</a></span>
+      </div>
+
+      <div class="imprint-row">
+        <span class="imprint-key">E-Mail</span>
+        <span class="imprint-val"><a href="mailto:office@feo.at">office@feo.at</a></span>
+      </div>
+
+      <div class="imprint-row">
+        <span class="imprint-key">Telefon</span>
+        <span class="imprint-val"><a href="tel:+431876754">+43 1 876 75 44</a></span>
+      </div>
+
+      <div class="imprint-row">
+        <span class="imprint-key">Geschäftsführer</span>
+        <span class="imprint-val">Gerhard Feichter</span>
+      </div>
+
+      <div class="imprint-row">
+        <span class="imprint-key">Firmenbuch</span>
+        <span class="imprint-val">Handelsgericht Wien — FN 93453g</span>
+      </div>
+
+      <div class="imprint-row">
+        <span class="imprint-key">ARA</span>
+        <span class="imprint-val">6813</span>
+      </div>
+
+      <div class="imprint-row">
+        <span class="imprint-key">USt.-ID</span>
+        <span class="imprint-val">ATU 151 509 03</span>
+      </div>
+
+    </div>
+
+    <div class="bottom-ornament">
+      <div class="top-ornament" style="margin-bottom:0; margin-top:0;">
+        <div class="line-short"></div>
+        <div class="diamond"></div>
+        <div class="line-short"></div>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>
